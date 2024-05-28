@@ -1,7 +1,7 @@
-var express = require("express");
+const express = require("express");
 const movies = require("../data/movies");
 const people = require("../data/people");
-var router = express.Router();
+const router = express.Router();
 
 function queryRequired(req, res, next) {
   const searchTerm = req.query.query;

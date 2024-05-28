@@ -1,8 +1,8 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const helmet = require("helmet");
 require("dotenv").config();
 
@@ -15,7 +15,7 @@ var indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movie");
 const searchRouter = require("./routes/search");
 
-var app = express();
+const app = express();
 app.use(helmet());
 
 app.use(

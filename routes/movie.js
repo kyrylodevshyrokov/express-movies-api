@@ -1,5 +1,5 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 const movieDetails = require("../data/movieDetails");
 
@@ -49,8 +49,6 @@ router.get("/:movieId", (req, res, next) => {
 });
 
 router.post("/:movieId/rating", requireJSON, (req, res, next) => {
-  const movieId = req.params.movieId;
-
   const userRating = req.body.value;
 
   if (userRating < 0.5 || userRating > 10) {
