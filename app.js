@@ -45,15 +45,6 @@ passport.deserializeUser((user, cb) => {
   cb(null, user);
 });
 
-app.use((req, res, next) => {
-  if (req.query.api_key !== "123456789") {
-    res.status(401);
-    res.json("Invalid API Key");
-  } else {
-    next();
-  }
-});
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
