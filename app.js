@@ -5,6 +5,11 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const helmet = require("helmet");
 
+const session = require("express-session");
+
+const passport = require("passport");
+const GitHubStrategy = require("passport-github").Strategy;
+
 var indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movie");
 const searchRouter = require("./routes/search");
@@ -12,12 +17,41 @@ const searchRouter = require("./routes/search");
 var app = express();
 app.use(helmet());
 
+app.use(
+  session({
+    secret: "hkjg34g2jh3gj2h",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+const passportConfig = require("./config");
+passport.use(
+  new GitHubStrategy(passportConfig, function (
+    accessToken,
+    refreshToken,
+    profile,
+    cb
+  ) {
+    return cb(null, profile);
+  })
+);
+
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+});
+passport.deserializeUser((user, cb) => {
+  cb(null, user);
+});
+
 app.use((req, res, next) => {
   if (req.query.api_key !== "123456789") {
     res.status(401);
     res.json("Invalid API Key");
+  } else {
+    next();
   }
-  next();
 });
 
 // view engine setup
