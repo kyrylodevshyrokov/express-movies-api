@@ -15,16 +15,12 @@ router.get("/most_popular", (req, res, next) => {
     page = 1;
   }
 
-  if (req.query.api_key !== "123456789") {
-    res.json("Invalid API key");
-  } else {
-    let results = movies.filter((movie) => {
-      return movie.most_popular;
-    });
-    const indexToStart = (page - 1) * 20;
-    results = results.slice(indexToStart, indexToStart + 19);
-    res.json({ page, results });
-  }
+  let results = movies.filter((movie) => {
+    return movie.most_popular;
+  });
+  const indexToStart = (page - 1) * 20;
+  results = results.slice(indexToStart, indexToStart + 19);
+  res.json({ page, results });
 });
 
 module.exports = router;
