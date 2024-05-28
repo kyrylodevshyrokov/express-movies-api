@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const helmet = require("helmet");
+require("dotenv").config();
 
 const session = require("express-session");
 
@@ -19,7 +20,7 @@ app.use(helmet());
 
 app.use(
   session({
-    secret: "hkjg34g2jh3gj2h",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
