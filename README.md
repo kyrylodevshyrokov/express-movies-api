@@ -56,123 +56,68 @@ Here are the routes that can be used for routing in the app.
 
 ### _Auth And Users_
 
-### Register
-
-- Method: **POST**
-- URL: {{URL}}/users
-- Data:
-```bash
-{
-    "username": "Jonny",
-    "password": "password",
-    "retypedPassword": "password",
-    "firstName": "Jonny",
-    "lastName": "Doe",
-    "email": "john@gmail.com"
-}
-```
-- Requires Auth: **NO**
-- Description: This endpoint enables users to register by sending a POST request containing their chosen username, password, first name, last name, and email.
-
-### Authenticate
-
-- Method: **POST**
-- URL: {{URL}}/auth/login
-- Data:
-```bash
-{
-    "username": "Jonny",
-    "password": "password"
-}
-```
-- Requires Auth: **NO**
-- Description: This endpoint enables users authenticate by sending a POST request with their username and password; upon successful authentication, the server returns a JSON object containing an access token.
-
-### Get Current User Profile
+### Log In With GitHub Account
 
 - Method: **GET**
-- URL: {{URL}}/auth/profile
-- Requires Auth: **YES**
-- Description: This endpoint retrieves the profile information of the currently authenticated user. 
+- URL: {{URL}}/login
+- Requires Auth: **NO**
+- Description: This endpoint enables users to log in by sending a GET request via their GitHub profile. 
 
-### _Events_
+### _Movies_
 
-### Create Event
+### Get Most Popular Movies
+
+- Method: **GET**
+- URL: {{URL}}/most_popular
+- Requires Auth: **NO**
+- Description: This endpoint allows users to get list of most popular movies.
+
+### Get The Single Movie Details
+
+- Method: **GET**
+- URL: {{URL}}/movie/:id
+- Requires Auth: **NO**
+- Description: This endpoint allows both users to get details about particular movie.
+
+### Get Top-Rated Movies In Descending Order
+
+- Method: **GET**
+- URL: {{URL}}/movie/top_rated
+- Requires Auth: **NO**
+- Description: This endpoint allows users to retrieve information about top-rated movies in descending order.
+
+### Submit The Rating For One Movie
 
 - Method: **POST**
-- URL: {{URL}}/events
+- URL: {{URL}}/movie/:id/rating
 - Data:
 ```bash
-{
-    "name": "Interesting Party",
-    "description": "That is a crazy event, must go there!",
-    "address": "Local St 101",
-    "when": "2023-08-16 21:00:00"
-}
+   value: 5
 ```
-- Requires Auth: **YES**
-- Description: This endpoint allows authenticated users to create a new event with filled following fields: name, description, address, and when.
-
-### Get All Events
-
-- Method: **GET**
-- URL: {{URL}}/events
 - Requires Auth: **NO**
-- Description: This endpoint allows both authenticated and unauthenticated users to retrieve all events.
+- Description: This endpoint allows users to submit rating for movie with particular ID.
 
-### Get Single Event
-
-- Method: **GET**
-- URL: {{URL}}/events/:id
-- Requires Auth: **NO**
-- Description: This endpoint allows both authenticated and unauthenticated users to retrieve information about a specific event with ID.
-
-### Delete Event
+### Delete The Rating For One Movie
 
 - Method: **DELETE**
-- URL: {{URL}}/events/:id
-- Requires Auth: **YES**
-- Description: This endpoint allows authenticated users to delete an event with ID.
-
-### Get Events Organized By User
-
-- Method: **GET**
-- URL: {{URL}}/events-organized-by-user/:id
-- Requires Auth: **NO**
-- Description: This endpoint allows both authenticated and unauthenticated users to retrieve a list of events organized by the user with ID.
-
-### _Event Attendance_
-
-### Get Event Attendees
-
-- Method: **GET**
-- URL: {{URL}}/events/:id/attendees
-- Requires Auth: **NO**
-- Description: This endpoint allows both authenticated and unauthenticated users to retrieve the list of attendees for a specific event with ID.
-
-### Attend Event
-
-- Method: **PUT**
-- URL: {{URL}}/current-user-event-attendance/:id
+- URL: {{URL}}/movie/:id/rating
 - Data:
 ```bash
-{
-    "answer": 1
-}
+   value: 5
 ```
-- Requires Auth: **YES**
-- Description: This endpoint enables authenticated users to indicate their attendance at a specific event.
+- Requires Auth: **NO**
+- Description: This endpoint allows users to delete rating for movie with particular ID.
 
-### Get Specific Event Attendance By Current User
-
-- Method: **GET**
-- URL: {{URL}}/current-user-event-attendance/:id
-- Requires Auth: **YES**
-- Description: This endpoint allows authenticated users to retrieve their attendance status for a specific event with ID.
-
-### Get All Events Attendance By Current User
+### Search The Movie By Query
 
 - Method: **GET**
-- URL: {{URL}}/current-user-event-attendance
-- Requires Auth: **YES**
-- Description: This endpoint allows authenticated users to retrieve their attendance status for all events.
+- URL: {{URL}}/search/movie?query=Spider
+- Requires Auth: **NO**
+- Description: This endpoint allows users to search movie by title or description.
+
+### Search The Actor By Query
+
+- Method: **GET**
+- URL: {{URL}}/search/person?query=Keaton
+- Requires Auth: **NO**
+- Description: This endpoint allows users to search the actor by name or surname.
