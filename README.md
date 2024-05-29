@@ -7,7 +7,7 @@ This API is designed for getting info about movies and actors, and searching for
 ## Features
 
 - User authentication using passport-github and express-session.
-- Getting info about current top-rated/now-playing movies.
+- Getting info about current top-rated/most popular movies.
 - Filtering and searching for particular movie or actor.
 - Leaving and updating the rating for particular movie.
 
