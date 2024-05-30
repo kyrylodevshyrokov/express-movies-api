@@ -62,7 +62,7 @@ router.post("/:movieId/rating", requireJSON, (req, res, next) => {
   });
 });
 
-router.delete("/:movieId/rating", requireJSON, (req, res, next) => {
+router.delete("/:movieId/rating", (req, res, next) => {
   res.json({ msg: "Rating deleted" });
 });
 

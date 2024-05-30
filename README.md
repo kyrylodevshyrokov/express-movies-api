@@ -20,18 +20,20 @@ This API is designed for getting info about movies and actors, and searching for
 ## Getting Started
 
 1. Clone the repository to your local machine.
-   
 2. Install dependencies using
+
 ```bash
 npm install
 ```
 
 3. Fill `.env` file with a secret key for your express-session object option. Here is an example:
+
 ```bash
 SECRET_KEY=secret
 ```
 
 4. In your Developer Setiings on your GitHub Profile create a new OAuth App with next filled fields:
+
 ```bash
 #Application name: Your App name
 #Homepage URL: localhost:3000
@@ -40,18 +42,21 @@ SECRET_KEY=secret
 ```
 
 5. Fill `config.js` file with secret info that is appeared after OAuth App creation. Here is an example:
+
 ```bash
 clientID: "your_cliend_id",
 clientSecret: "your_client_secret",
 callbackURL: "http://localhost:3000/auth"
 ```
-   
+
 5. Launch the local server using
+
 ```bash
 npm run start
 ```
 
 ## API Endpoints
+
 Here are the routes that can be used for routing in the app.
 
 ### _Auth And Users_
@@ -61,7 +66,7 @@ Here are the routes that can be used for routing in the app.
 - Method: **GET**
 - URL: {{URL}}/login
 - Requires Auth: **NO**
-- Description: This endpoint enables users to log in by sending a GET request via their GitHub profile. 
+- Description: This endpoint enables users to log in by sending a GET request via their GitHub profile.
 
 ### _Movies_
 
@@ -91,9 +96,11 @@ Here are the routes that can be used for routing in the app.
 - Method: **POST**
 - URL: {{URL}}/movie/:id/rating
 - Data:
+
 ```bash
    value: 5
 ```
+
 - Requires Auth: **NO**
 - Description: This endpoint allows users to submit rating for movie with particular ID.
 
@@ -101,10 +108,6 @@ Here are the routes that can be used for routing in the app.
 
 - Method: **DELETE**
 - URL: {{URL}}/movie/:id/rating
-- Data:
-```bash
-   value: 5
-```
 - Requires Auth: **NO**
 - Description: This endpoint allows users to delete rating for movie with particular ID.
 
