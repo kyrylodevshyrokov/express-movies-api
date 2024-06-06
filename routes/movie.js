@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const status = require("http-status");
 
 const movieDetails = require("../data/movieDetails");
 
@@ -37,14 +38,14 @@ router.get("/:movieId", (req, res, next) => {
   });
 
   if (!results) {
-    res.status(404);
+    res.status(status.NOT_FOUND);
     res.json({
       msg: "Movie ID not found",
       production_companies: [],
     });
   }
 
-  res.status(200);
+  res.status(status.OK);
   res.json(results);
 });
 
@@ -58,7 +59,7 @@ router.post("/:movieId/rating", requireJSON, (req, res, next) => {
   }
   res.json({
     msg: "Thank you for submitting your rating",
-    status_code: 200,
+    status_code: status.OK,
   });
 });
 
